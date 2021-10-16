@@ -1,0 +1,19 @@
+Simple TWAIN scanner application
+================================
+
+A tiny windows application which retrieves images from your scanner.
+
+Builds with MinGW-w64 and the WDK7. Runs on WinXP or newer.
+
+Code and ideas that you can steal:
+
+* How to use the TWAIN API, including a thin wrapper library over
+  the raw TWAIN entry point (twainhelper.{h,cpp})
+* How to show a folder browser dialog (folderbrowsehelper.{h,cpp})
+* How to save bitmaps using GDI+
+* How to use commctl v6 with visual styles, while loading 3rd party
+  code (i.e. the scanner driver) with commctl v5
+* How to use high DPI in your own code only, with 3rd party code using
+  DPI scaling provided by Windows
+* How to build a desktop app with the WDK
+

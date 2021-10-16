@@ -1,0 +1,25 @@
+TARGETNAME=twainclient
+TARGETTYPE=PROGRAM
+
+TARGETLIBS = $(SDK_LIB_PATH)\gdiplus.lib \
+             $(SDK_LIB_PATH)\shell32.lib \
+             $(SDK_LIB_PATH)\ole32.lib \
+             $(OBJ_PATH)\$(O)\twain.lib
+
+MSC_WARNING_LEVEL = /W4 /WX
+MSC_OPTIMIZATION = /Oxsi
+
+C_DEFINES = $(C_DEFINES) /DUNICODE /DTC_RAW_ENTRY_POINT
+
+UMTYPE=windows
+UMENTRY=wwinmain
+
+USE_LIBCNTPR=1
+
+NTTARGETFILE2=$(OBJ_PATH)\$(O)\twain.lib
+
+SOURCES= twainclient.cpp \
+         twainhelper.cpp \
+         folderbrowsehelper.cpp \
+         dpihelper.cpp \
+         resource.rc

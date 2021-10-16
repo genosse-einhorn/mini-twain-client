@@ -1,0 +1,4 @@
+LIBRARY twain_32
+EXPORTS
+    DSM_Entry@24   @1 NONAME
+

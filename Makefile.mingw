@@ -1,0 +1,22 @@
+CXX = i686-w64-mingw32-g++
+WINDRES = i686-w64-mingw32-windres
+DLLTOOL = i686-w64-mingw32-dlltool
+CXXFLAGS = -std=c++03 -Wall -Wextra -mwindows -municode -DUNICODE -D_UNICODE -D_WIN32_IE=0x0500 -DWINVER=0x0500
+LDFLAGS = -luser32 -lole32 -lshell32 -lversion -lgdiplus -Lout -ltwain -static
+
+out/twainclient.exe: out/twainclient.o out/twainhelper.o out/folderbrowsehelper.o out/dpihelper.o out/resource.o out/libtwain.a
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+out/%.o: %.cpp resource.h twainhelper.h twain.h folderbrowsehelper.h dpihelper.h
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+out/resource.o: resource.rc resource.h app.manifest isolated.manifest
+	$(WINDRES) -O coff -o $@ $<
+
+out/libtwain.a: twain_32.def
+	i686-w64-mingw32-dlltool -d twain_32.def -l out/libtwain.a
+
+clean:
+	rm -rf out/*.o out/*.a out/*.exe
+
+
